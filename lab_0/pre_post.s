@@ -1,26 +1,26 @@
 	AREA PROGRAM1, CODE, READONLY
 ENTRY
-	ADR R0, Q
-	LDR R1, [R0]
+	ADR	R0,	Q
+	LDR	R1,	[R0], #4
 	ldrb r2, [r0]
-	ldrb r3, [r0]
-	LDR R4, =RES
-	STR R1, [r4]
-	strb r2, [r4, #4]
-	strb r3, [r4, #8]
-	LDR R6, =VALU
-	
-	LDR R7, [R6]
-	mov r8, #4
-	ldr r9, [r0,r8]
+	LDR R3, [R0,#4]!
+	ldrb r4, [r0]
+	LDR R5, =R
+	STR	R0, [r5], #4
+	strb r1, [r5]
+	strb r2, [r5, #4]!
+	MOV R6, #8
+	strb R1, [R5], R6
+	strb R2, [R5, R6]!
+	str	R3, [R5]
 s	B	s
-Q	DCD	0xAABBCCDD
+Q	DCB	"MANIPAL INSTITUTE OF TECHNOLOGY, MANIPAL"
 P	DCD	0xABCDEF78
 
-	AREA MEMORY, DATA, READWRITE
+	AREA	MEMORY,	DATA,	READWRITE
 VALU	DCD	0x11223344
 R	DCD	0xAABBCCDD
 T	DCD	0x11223344
-
 RES	SPACE	10
 	END
+	
